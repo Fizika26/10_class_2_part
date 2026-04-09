@@ -189,6 +189,8 @@
 
     .content {
       padding: 12px 14px 16px;
+      background: #fff;
+      min-height: 100%;
     }
 
     .rule {
@@ -237,6 +239,12 @@
       font-size: 14px;
     }
 
+    .helper-inside {
+      padding: 0;
+      margin: 0 0 16px;
+      font-size: 14px;
+    }
+
     .result-card {
       font-size: 18px;
       font-weight: 700;
@@ -277,8 +285,8 @@
 <body>
   <div class="page">
     <div class="header">
-      <h1>Диагностическая работа</h1>
-      <p>Часть 2</p>
+      <h1>Диагностическая работа — Часть 2</h1>
+      <p>Тренажёр в стиле МЦКО</p>
     </div>
 
     <div class="start-screen" id="startScreen">
@@ -364,8 +372,7 @@
           <div class="text">
             В основании прямой треугольной призмы ABCA1B1C1 лежит равнобедренный прямоугольный треугольник ABC с гипотенузой АВ, равной 2√10; высота призмы равна 2√5. Найдите расстояние от точки C1 до плоскости ВСМ, где М – середина ребра A1C1.
           </div>
-          
-          </div>
+          <div class="helper helper-inside">Переключение между заданиями — по кнопкам сверху.</div>
           <div class="answer-box">
             <label for="answer4">Ответ:</label>
             <input id="answer4" name="answer_4" type="text" inputmode="decimal" />
@@ -380,7 +387,7 @@
           <div class="text">
             Фабрика выпускает сумки. В среднем на 130 качественных сумок приходится 6 сумок со скрытыми дефектами. Найдите вероятность того, что купленная сумка окажется качественной. Результат округлите до сотых.
           </div>
-          
+          <div class="helper helper-inside">Переключение между заданиями — по кнопкам сверху.</div>
           <div class="answer-box">
             <label for="answer5">Ответ:</label>
             <input id="answer5" name="answer_5" type="text" inputmode="decimal" />
@@ -395,8 +402,7 @@
           <div class="text">
             Известно, что все ученики класса посещают хотя бы один из двух кружков: по математике и по программированию. В кружке по математике занимаются 12 человек, в кружке по программированию – 22 человека, а 11 человек посещают оба эти кружка. Сколько всего учащихся в классе?
           </div>
-          
-          </div>
+          <div class="helper helper-inside">Переключение между заданиями — по кнопкам сверху.</div>
           <div class="answer-box">
             <label for="answer6">Ответ:</label>
             <input id="answer6" name="answer_6" type="text" inputmode="decimal" />
@@ -411,8 +417,7 @@
           <div class="text">
             Вероятность того, что на тестировании по математике учащийся А. верно решит больше четырёх задач, равна 0,73. Вероятность того, что А. верно решит больше трёх задач, равна 0,86. Найдите вероятность того, что А. верно решит ровно 4 задачи.
           </div>
-          
-          </div>
+          <div class="helper helper-inside">Переключение между заданиями — по кнопкам сверху.</div>
           <div class="answer-box">
             <label for="answer7">Ответ:</label>
             <input id="answer7" name="answer_7" type="text" inputmode="numeric" />
@@ -427,18 +432,13 @@
           <div class="text">
             В коробке 12 синих, 4 красных и 9 зелёных фломастеров. Случайным образом выбирают два фломастера. Найдите вероятность того, что окажутся выбраны один синий и один красный фломастеры.
           </div>
-          
-          </div>
+          <div class="helper helper-inside">Переключение между заданиями — по кнопкам сверху.</div>
           <div class="answer-box">
             <label for="answer8">Ответ:</label>
             <input id="answer8" name="answer_8" type="text" inputmode="numeric" />
           </div>
         </div>
       </section>
-
-      
-
-      <div class="helper">Переключение между заданиями — по кнопкам сверху.</div>
 
       <div class="hidden-fields">
         <input type="hidden" name="student_name" id="studentNameField" />
@@ -484,36 +484,7 @@
       `;
     }
 
-    function renderTask3Image() {
-      const container = document.getElementById('task3Image');
-      if (!container) return;
-
-      container.innerHTML = `
-        <svg viewBox="0 0 900 220" style="max-width:100%; height:auto; border:1px solid #999; background:#fff; padding:8px;" xmlns="http://www.w3.org/2000/svg">
-          <rect width="900" height="220" fill="white"/>
-          <text x="40" y="140" font-size="90" font-family="Times New Roman, serif">−18√2 sin ( −135° )</text>
-        </svg>
-      `;
-    }
-
     
-
-    
-
-    
-
-    
-
-    function renderTask9Image() {
-      const container = document.getElementById('task9Image');
-      if (!container) return;
-
-      container.innerHTML = `
-        <div style="text-align:center">
-          <img src="task9.png" style="max-width:420px; width:100%; border:1px solid #999; padding:8px; background:white;">
-        </div>
-      `;
-    }
 
     const startScreen = document.getElementById('startScreen');
     const mainScreen = document.getElementById('quizForm');
@@ -531,11 +502,6 @@
 
     renderTask1Image();
     renderTask2Image();
-        
-    
-    
-    
-    renderTask9Image();
 
     let timeLeft = TASK_DURATION_SECONDS;
     let timerInterval = null;
