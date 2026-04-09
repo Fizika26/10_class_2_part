@@ -170,6 +170,7 @@
       grid-template-columns: 88px 1fr;
       border-top: 2px solid var(--border);
       min-height: 220px;
+      background: #fff;
     }
 
     .task.active {
@@ -207,6 +208,8 @@
       font-size: 16px;
       line-height: 1.5;
       margin-bottom: 16px;
+      max-width: 520px;
+    }
     }
 
     .answer-box {
@@ -241,8 +244,10 @@
 
     .helper-inside {
       padding: 0;
-      margin: 0 0 16px;
+      margin: 16px 0 0;
       font-size: 14px;
+      text-align: center;
+      white-space: nowrap;
     }
 
     .result-card {
@@ -323,7 +328,7 @@
         <button type="button" class="nav-btn" data-target="8">8</button>
       </div>
 
-      <section class="task active" data-task="1" data-answer="55">
+      <section class="task active" data-task="1">
         <div class="num">1</div>
         <div class="content">
           <div class="rule">Ответ на задание запишите в виде целого числа.</div>
@@ -339,7 +344,7 @@
         </div>
       </section>
 
-      <section class="task" data-task="2" data-answer="17">
+      <section class="task" data-task="2" >
         <div class="num">2</div>
         <div class="content">
           <div class="rule">Ответ на задание запишите в виде целого числа.</div>
@@ -355,7 +360,7 @@
         </div>
       </section>
 
-      <section class="task" data-task="3" data-answer="90">
+      <section class="task" data-task="3" >
         <div class="num">3</div>
         <div class="content">
           <div class="rule">Ответ на задание запишите в виде целого числа.</div>
@@ -371,7 +376,7 @@
         </div>
       </section>
 
-      <section class="task" data-task="4" data-answer="2">
+      <section class="task" data-task="4" >
         <div class="num">4</div>
         <div class="content">
           <div class="rule">Ответ на задание запишите в виде числа.</div>
@@ -387,7 +392,7 @@
         </div>
       </section>
 
-      <section class="task" data-task="5" data-answer="0,94">
+      <section class="task" data-task="5" >
         <div class="num">5</div>
         <div class="content">
           <div class="rule">Ответ на задание запишите в виде конечной десятичной дроби.</div>
@@ -403,7 +408,7 @@
         </div>
       </section>
 
-      <section class="task" data-task="6" data-answer="23">
+      <section class="task" data-task="6" >
         <div class="num">6</div>
         <div class="content">
           <div class="rule">Ответ на задание запишите в виде числа.</div>
@@ -419,7 +424,7 @@
         </div>
       </section>
 
-      <section class="task" data-task="7" data-answer="0,13">
+      <section class="task" data-task="7" >
         <div class="num">7</div>
         <div class="content">
           <div class="rule">Ответ на задание запишите в виде числа.</div>
@@ -435,7 +440,7 @@
         </div>
       </section>
 
-      <section class="task" data-task="8" data-answer="0,16">
+      <section class="task" data-task="8" >
         <div class="num">8</div>
         <div class="content">
           <div class="rule">Ответ на задание запишите в виде числа.</div>
@@ -472,6 +477,17 @@
 
   <script>
     const TASK_DURATION_SECONDS = 50 * 60;
+
+const ANSWERS = {
+1: atob("NTU="),
+2: atob("MTc="),
+3: atob("OTA="),
+4: atob("Mg=="),
+5: atob("MCw5NA=="),
+6: atob("MjM="),
+7: atob("MCwxMw=="),
+8: atob("MCwxNg==")
+};
 
     function renderTask1Image() {
       const container = document.getElementById('task1Image');
@@ -514,6 +530,11 @@
     renderTask1Image();
     renderTask2Image();
 
+    document.querySelectorAll('.text img').forEach(img=>{
+      img.style.maxWidth='520px';
+      img.style.width='100%';
+    });
+
     let timeLeft = TASK_DURATION_SECONDS;
     let timerInterval = null;
     let startedAt = null;
@@ -551,7 +572,7 @@
         const number = task.dataset.task;
         const input = task.querySelector('input');
         const userAnswer = normalize(input.value);
-        const correctAnswer = normalize(task.dataset.answer);
+        const correctAnswer = normalize(ANSWERS[number]);
         const isCorrect = userAnswer !== '' && userAnswer === correctAnswer;
 
         if (isCorrect) correctCount += 1;
@@ -604,7 +625,7 @@
         const number = task.dataset.task;
         const input = task.querySelector('input');
         const userAnswer = normalize(input.value);
-        const correctAnswer = normalize(task.dataset.answer);
+        const correctAnswer = normalize(ANSWERS[number]);
         const isCorrect = userAnswer !== '' && userAnswer === correctAnswer;
 
         tableHTML += `<tr>
